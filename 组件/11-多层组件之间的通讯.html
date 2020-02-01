@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>11-多层组件之间的通讯</title>
+</head>
+<body>
+<div id="app">
+    <parent :msgparent=msgapp :srcparent=srcapp></parent>
+</div>
+
+<!-- 子组件1 -->
+<template id="child1-tmpl">
+    <div>
+        <p>{{msgchild}}</p>
+    </div>
+</template>
+
+<!-- 子组件2 -->
+<template id="child2-tmpl">
+    <div>
+        <img :src=srcchild width="200">
+    </div>
+</template>
+
+<!-- 父组件 -->
+<template id="parent-div">
+    <div>
+        <child1_div :msgchild=msgparent></child1_div>
+        <child2_div :srcchild=srcparent></child2_div>
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script>
+    //实例化子组件1
+    let child1 = Vue.extend({
+        template:'#child1-tmpl',
+        props:['msgchild']
+    });
+
+    let child2 = Vue.extend({
+        template:'#child2-tmpl',
+        props:['srcchild']
+    });
+/*    Vue.component('mychild1',{
+        template:'#child1'
+    });*/
+
+    //实例化子组件2
+/*    Vue.component('mychild2',{
+        template:'#child2'
+    });*/
+
+
+    //实例化父组件
+    Vue.component('parent',{
+        template:'#parent-div',
+        //传递数据
+        props:['msgparent','srcparent'],
+        components:{
+            child1_div:child1,
+            child2_div:child2
+        }
+    })
+
+
+    //
+    new Vue({
+        el:'#app',
+        data:{
+            msgapp:'多层组件之间传递数据',
+            srcapp:'../image/yazi.jpeg'
+        }
+    })
+</script>
+</body>
+</html>

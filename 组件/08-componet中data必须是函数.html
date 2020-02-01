@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+<div id="app">
+    <mycom></mycom>
+</div>
+<template id="my-div">
+    <div>
+        <img src="../image/yazi.jpeg" width="200">
+        <p>我是template中的p</p>
+        <p>{{message}}</p>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    // 实例化组件
+    Vue.component('mycom',{
+        template:'#my-div',
+        data(){
+            return{
+                message:'我是组件中用函数返回的变量'
+            }
+        }
+    })
+    //
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>父子组件</title>
+</head>
+<body>
+<div id="app">
+    <parent></parent>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    //1、构造子组件
+    let child1 = Vue.extend({
+        template:`
+        <img src="../image/yazi.jpeg" width="200">
+        `
+    });
+
+    let child2 = Vue.extend({
+        template:`
+        <p>我是child2</p>
+        `
+    });
+
+    //2、构造父组件，并在父组件中注册子组件,注册父组件
+    Vue.component('parent',{
+        //注册两个子组件
+        components:{
+            'my-child1':child1,
+            'my-child2':child2
+        },
+        //构造父组件
+        template:`
+        <div>
+        <my-child1></my-child1>
+        <my-child2></my-child2>
+        </div>`
+    });
+
+    //挂载vue对象
+    let vm = new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

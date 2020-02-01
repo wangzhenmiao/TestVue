@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>{{msg}}</p>
+    <my-date></my-date>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    //1、构建+注册组件
+    Vue.component('my-date',{
+        //1、template模板选项
+        template:`
+        <div>
+            <input type="date">
+            <p>今天已经是冬天了！</p>
+        </div>
+        `
+    });
+
+    new Vue({
+        el:'#app',
+        data:{
+            msg:'hhhhh'
+        }
+    })
+</script>
+</body>
+</html>

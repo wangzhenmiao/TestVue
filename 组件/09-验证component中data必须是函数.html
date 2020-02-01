@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>09-验证component中data必须是函数</title>
+</head>
+<body>
+<div id="app">
+    <!-- component中用函数返回data,可以防止多个组件之间数据污染 -->
+    <mydiv></mydiv>
+    <mydiv></mydiv>
+    <mydiv></mydiv>
+</div>
+<template id="my-div">
+    <div>
+        <button @click="counter += 1;">点击次数：{{counter}}</button>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+//实例化组件
+    Vue.component('mydiv',{
+        template:'#my-div',
+        data() {
+            return {
+                counter:0
+            }
+        }
+    });
+
+    //
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

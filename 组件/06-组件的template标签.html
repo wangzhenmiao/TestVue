@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>vue的template标签</title>
+</head>
+<body>
+<!--template要放在vue组件app之外才能注册成功 -->
+<template id="my-div">
+    <!--template里要用一个div把所有的包括起来 -->
+    <div>
+        <div>我是template!</div>
+        <img src="../image/maomi.jpeg" width="200">
+        <p>哈哈我是template中的最后一个标签p</p>
+    </div>
+</template>
+
+<div id="app">
+    <!--直接使用注册好的template -->
+    <mycom></mycom>
+</div>
+<script src="../js/vue.js"></script>
+<script>
+    //1、注册template
+    Vue.component('mycom',{
+        <!--mycom是在vue组件中要使用的标签，实例化时，要用template -->
+        template:'#my-div'
+    });
+
+    //
+    new Vue({
+        el:"#app"
+    })
+</script>
+</body>
+</html>

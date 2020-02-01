@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>10-单层组件之间用props传递数据</title>
+</head>
+<body>
+<div id="app">
+    <mydiv msg="我是第一个msg" imgsrc="../image/yazi.jpeg"></mydiv>
+    <mydiv msg="我是第er个msg" imgsrc="../image/maomi.jpeg"></mydiv>
+</div>
+<template id="my-div">
+   <div>
+       <p>{{msg}}</p>
+       <img :src=imgsrc width="230">
+   </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    //实例化组件
+    Vue.component('mydiv',{
+        template:'#my-div',
+        <!--通过props在组件之间通讯，传递数据 -->
+        props:['msg','imgsrc']
+    })
+    //
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>综合练习</title>
+    <style>
+        #app{
+            margin: 50px auto;
+            width: 600px;
+        }
+        fieldset{
+            border: 1px solid orangered;
+            margin-bottom: 20px;
+        }
+        fieldset input{
+            width: 200px;
+            height: 30px;
+            margin: 10px 0;
+        }
+        table{
+            width: 600px;
+            border: 2px solid orangered;
+            text-align: center;
+        }
+        thead{
+            background-color: orangered;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+<!--part 1 -->
+    <fieldset>
+        <legend>版本质量数据</legend>
+        <div>
+            <span>姓名:</span>
+            <input type="text" placeholder="请输入姓名" v-model="newStu.name">
+        </div>
+        <div>
+            <span>年龄:</span>
+            <input type="text" placeholder="请输入年龄" v-model="newStu.age">
+        </div>
+        <div>
+            <span>性别:</span>
+            <select v-model="newStu.sex">
+                <option value="男">男</option>
+                <option value="女">女</option>
+            </select>
+        </div>
+        <div>
+            <span>手机号码:</span>
+            <input type="text" placeholder="请输入手机号" v-model="newStu.phone">
+        </div>
+        <div>
+            <button @click="creatNewStudent()">新增</button>
+        </div>
+    </fieldset>
+    <!-- part 2 -->
+    <table>
+        <thead>
+        <tr>
+            <td>姓名</td>
+            <td>年龄</td>
+            <td>性别</td>
+            <td>手机号</td>
+            <td>操作</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="(p,index) in persons">
+            <td>{{p.name}}</td>
+            <td>{{p.age}}</td>
+            <td>{{p.sex}}</td>
+            <td>{{p.phone}}</td>
+            <td><button @click="deleteStu(index)">删除</button></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="js/vue.js"></script>
+<script>
+    let vm = new Vue({
+        el:"#app",
+        data:{
+            persons:[
+                {name:'h1',age:12,sex:'男',phone:123456},
+                {name:'h2',age:22,sex:'男',phone:123456},
+                {name:'h3',age:32,sex:'男',phone:123456},
+                {name:'h4',age:42,sex:'男',phone:123456},
+            ],
+            newStu:{name:'',age:'',sex:'男',phone:''}
+        },
+        methods:{
+            creatNewStudent(){
+                //验证输入不能为空
+                if(this.newStu.name === ''){
+                    alert('姓名不能为空！');
+                    return;
+                }
+                //数组中新增一条记录
+                this.persons.unshift(this.newStu);
+                //清空输入框
+                this.newStu = {name:'',age:'',sex:'男',phone:''}
+            },
+            deleteStu(index){
+                alert(index);
+                this.persons.splice(index,1);
+            }
+        }
+    });
+</script>
+</body>
+</html>

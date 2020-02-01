@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <p>初始值:{{msg}}</p>
+    <p>翻转后:{{msg.split('').reverse().join('')}}</p>
+    <p>用函数：{{revfunc()}}</p>
+    <p>用计算属性：{{revPro}}</p>
+</div>
+<script src="js/vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            msg:'hello world'
+        },
+        methods:{
+            revfunc(){
+                return this.msg.split('').reverse().join('');
+            }
+        },
+        //计算属性有缓存，适合变化少的大型运算
+        computed:{
+            revPro(){
+                return this.msg.split('').reverse().join('');
+            }
+        }
+    })
+</script>
+
+
+</body>
+</html>
