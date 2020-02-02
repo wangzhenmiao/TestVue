@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>01-路由router基础</title>
+    <link rel="stylesheet" href="../bootstrap/css/bootstrap.css">
+    <style>
+        body{
+            background-color: #e8e8e8;
+        }
+    </style>
+</head>
+<body>
+<div id="app">
+    <div class="row">
+        <div class="col-8 offset-2">
+            <div>
+                <h1>IT教育</h1>
+            </div>
+        </div>
+        </div>
+    <div class="row">
+        <div class="col-2 offset-2">
+            <router-link class="list-group-item" to="/h5">html5学习</router-link>
+            <router-link class="list-group-item" to="/java">java学习</router-link>
+            <router-link class="list-group-item" to="/python">python学习</router-link>
+        </div>
+        <div class="col-6">
+            <div class="panel">
+                <div class="panel-body">
+                    <router-view></router-view>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<template id="h5">
+    <div>
+        <h2>html5学习</h2>
+        <p>前端工程师应该好好学习h5技术</p>
+        <img src="../image/yazi.jpeg" width="200">
+    </div>
+</template>
+
+<template id="java">
+    <div>
+        <h2>java学习</h2>
+        <p>java通用性最好</p>
+        <img src="../image/liulei.jpeg" width="200">
+    </div>
+</template>
+
+<template id="python">
+    <div>
+        <h2>python学习</h2>
+        <p>python是门槛最低的语言</p>
+        <img src="../image/maomi.jpeg" width="200">
+    </div>
+</template>
+
+<script src="../js/vue.js"></script>
+<script src="../js/vue-router.js"></script>
+<script>
+    //1、创建组件
+    let html5 = Vue.extend({
+        template:'#h5'
+    });
+
+    let Java = Vue.extend({
+        template:'#java'
+    });
+
+    let Python = Vue.extend({
+        template:'#python'
+    });
+
+    //2、定义路由
+    const routes = [
+        {path:'/h5',component:html5},
+        {path:'/java',component:Java},
+        {path:'/python',component:Python}
+    ];
+
+    //3、创建路由实例
+    const router = new VueRouter({
+        routes
+    });
+
+
+    //4、创建vue的实例，并挂载
+    new Vue({
+        router,
+        el:'#app'
+    }).$mount('#app')
+
+
+</script>
+</body>
+</html>

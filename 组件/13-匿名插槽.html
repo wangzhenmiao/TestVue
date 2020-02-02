@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>13-匿名插槽</title>
+</head>
+<body>
+<div id="app">
+    <slot-div>
+        <img src="../image/yazi.jpeg" width="200"/>
+        <p>哈哈哈，我是借助插槽显示出来的！</p>
+    </slot-div>
+</div>
+<template id="my-slot">
+    <div>
+        <h2>我是头部，我只会写这么多</h2>
+        <!-- 预留一个插槽 -->
+        <slot>我是预留的插槽</slot>
+        <footer>我是尾部</footer>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+    //
+    Vue.component('slot-div',{
+        template:'#my-slot'
+    })
+
+    //
+    new Vue({
+        el:'#app'
+    })
+
+</script>
+</body>
+</html>

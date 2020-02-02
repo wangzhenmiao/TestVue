@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>14-实名插槽</title>
+</head>
+<body>
+<div id="app">
+    <slot-div>
+        <div slot="cpu">我在用插槽cpu</div>
+        <img slot="memory" src="../image/yazi.jpeg" width="100">
+        <div slot="hard">
+            <!--放到div里是为了换行 -->
+            <input type="date">
+        </div>
+    </slot-div>
+</div>
+
+<template id="my-slot">
+    <div id="main">
+        <slot name="cpu">我是cpu的插槽</slot>
+        <slot name="memory">我是内存的插槽</slot>
+        <slot name="hard">我是硬盘的插槽</slot>
+    </div>
+
+</template>
+<script src="../js/vue.js"></script>
+<script>
+//
+    Vue.component('slot-div',{
+        template:'#my-slot'
+    });
+
+    //
+    new Vue({
+        el:'#app'
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>12-自定义事件</title>
+</head>
+<body>
+<div id="app">
+    <btn-div @total="allAdd()"></btn-div>
+    <btn-div @total="allAdd()"></btn-div>
+    <btn-div @total="allAdd()"></btn-div>
+    <p>按钮总共被点击了{{allcounter}}次</p>
+</div>
+<template id="my-btn">
+    <div>
+        <button @click="counterAdd()">按钮被点击了{{counter}}次</button>
+    </div>
+</template>
+<script src="../js/vue.js"></script>
+<script>
+//
+    Vue.component('btn-div',{
+        template:'#my-btn',
+        data(){
+            return{
+                counter:0
+            }
+        },
+        methods: {
+            counterAdd(){
+                this.counter+=1;
+                //执行函数时，会上上级组件提交一个total事件
+                this.$emit('total');
+            }
+        }
+    });
+
+    //
+    new Vue({
+        el:'#app',
+        data:{
+            allcounter:0
+        },
+        methods:{
+            allAdd(){
+                this.allcounter+=1;
+            }
+        }
+    })
+</script>
+</body>
+</html>
