@@ -21,9 +21,10 @@
         </div>
     <div class="row">
         <div class="col-2 offset-2">
-            <router-link class="list-group-item" to="/h5">html5学习</router-link>
-            <router-link class="list-group-item" to="/java">java学习</router-link>
-            <router-link class="list-group-item" to="/python">python学习</router-link>
+            <!--用:to="{name:'h5'}"实现动态绑定路由，to前边有冒号，说明是动态绑定 -->
+            <router-link class="list-group-item" :to="{name:'h5'}">html5学院</router-link>
+            <router-link class="list-group-item" :to="{name:'java'}">java学习</router-link>
+            <router-link class="list-group-item" :to="{name:'python'}">python学习</router-link>
         </div>
         <div class="col-6">
             <div class="panel">
@@ -79,11 +80,11 @@
         template:'#python'
     });
 
-    //2、定义路由
+    //2、定义路由,路由中增加name
     const routes = [
-        {path:'/h5',component:html5},
-        {path:'/java',component:Java},
-        {path:'/python',component:Python},
+        {path:'/h5',component:html5,name:'h5'},
+        {path:'/java',component:Java,name:'java'},
+        {path:'/python',component:Python,name:'java'},
         //配置跟路由
         {path:'/',redirect:'/h5'}
     ];

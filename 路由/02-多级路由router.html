@@ -44,6 +44,31 @@
         <h2>html5学习</h2>
         <p>前端工程师应该好好学习h5技术</p>
         <img src="../image/yazi.jpeg" width="200">
+        <div>
+            <ul class="nav nav-tabs">
+                <router-link to="/h5/basic">html5基础学习</router-link>
+                <router-link to="/h5/high">h5高级</router-link>
+            </ul>
+            <div class="tab-content">
+                <router-view></router-view>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="basic">
+    <div>
+        <h2>html5基础学习</h2>
+        <p>基础学习，多级路由</p>
+        <img src="../image/maomi.jpeg" width="50">
+    </div>
+</template>
+
+<template id="high">
+    <div>
+        <h2>html5高级课程</h2>
+        <p>多级路由的高级学习课程</p>
+        <img src="../image/liulei.jpeg" width="50">
     </div>
 </template>
 
@@ -71,6 +96,14 @@
         template:'#h5'
     });
 
+    let Basic = Vue.extend({
+        template:'#basic'
+    });
+
+    let High = Vue.extend({
+        template:'#high'
+    });
+
     let Java = Vue.extend({
         template:'#java'
     });
@@ -81,7 +114,15 @@
 
     //2、定义路由
     const routes = [
-        {path:'/h5',component:html5},
+        {
+            path:'/h5',
+            component:html5,
+            children:[
+                {path:'basic',component:Basic},
+                {path:'high',component:High},
+                {path:'/',redirect:'basic'}
+            ]
+        },
         {path:'/java',component:Java},
         {path:'/python',component:Python},
         //配置跟路由
